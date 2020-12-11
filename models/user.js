@@ -1,10 +1,10 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const db = require('../db');
+const { DataTypes, Model } = require('sequelize');
+const database = require('../db');
 
 module.exports = (sequelize, DataTypes) => {
-    const User = db.define('user', {
+    return  database.define('user', {
         email:{
-            type:DataTypes.String,
+            type: DataTypes.String,
             allowNull: false   
         },
         password: {
@@ -20,5 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true   
         }
     })
-    return User
 }
+
+// further research 
+//https://www.codementor.io/@mirko0/how-to-use-sequelize-with-node-and-express-i24l67cuz 
