@@ -6,4 +6,11 @@ database.sync();
 app.use(Express.json());
 
 
-app.listen(process.env.PORT, () => console.log(`App is listening on the Port number: ${process.env.PORT}`));
+app.listen(process.env.PORT, () => console.log(`App on PORT: ${process.env.PORT}`));
+app.use(Express.static(__dirname + '/public'));
+
+app.get('/', (request, response) => response.render('index'));
+
+
+const user = require('./controllers/userController');
+// app.use('/user', user)
