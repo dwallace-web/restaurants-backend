@@ -3,8 +3,14 @@ const Express = require('express');
 const app = Express();
 const database = require('./db');
 
-database.sync();
+// database.sync();
+
+const middlewares = require("./middlewares");
+const controllers = require("./controllers");
+
 app.use(Express.json());
+
+app.use("/user", controllers.User);
 
 app.get('/', (req, res) => {
     res.json({
@@ -13,11 +19,10 @@ app.get('/', (req, res) => {
 });
 
 database.authenticate()
-.then(() => console.log('CONFIRMATION - DATABASE CONNECTED'))
-.then(() => app.listen(process.env.PORT, () => console.log(`App on PORT: ${process.env.PORT}`))
-)
-.catch(err => console.log(err));
+    .then(() => database.sync())
+    .then(() => console.log('CONFIRMATION - DATABASE CONNECTED'))
+    .then(() => app.listen(process.env.PORT, () => console.log(`App on PORT: ${process.env.PORT}`)))
+    .catch(err => console.log(err));
 
 // app.use(Express.static(__dirname + '/public'));
 // const user = require('./controllers/userController');
-// app.use('/user', user)

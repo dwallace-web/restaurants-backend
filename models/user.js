@@ -1,7 +1,7 @@
-const { Sequelize, DataTypes, Model } = require('sequelize/types');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('../db');
 
-module.exports = () => {
+module.exports = (sequelize, DataTypes) => {
     const User = db.define('user', {
         email:{
             type:DataTypes.String,
@@ -13,13 +13,12 @@ module.exports = () => {
         },
         firstName: {
             type:DataTypes.String,
-            allowNull: false   
+            allowNull: true   
         },
         lastName: {
             type:DataTypes.String,
-            allowNull: false   
+            allowNull: true   
         }
     })
-
     return User
 }
