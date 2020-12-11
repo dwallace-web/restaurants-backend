@@ -24,3 +24,4 @@ module.exports = (sequelize, DataTypes) => {
 
 // further research 
 //https://www.codementor.io/@mirko0/how-to-use-sequelize-with-node-and-express-i24l67cuz 
+//https://www.geeksforgeeks.org/express-js-app-render-function/
