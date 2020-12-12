@@ -7,13 +7,14 @@ const userController = Router();
 userController.post('/signup', (req, res) => {
 
     //req deconstruction 
-     User.create({
+    User.create({
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 12),
+        username: req.body.username,
         phoneNumber: req.body.phonenumber,
         lastName: req.body.lastname,
         firstName: req.body.firstname,
-        
+        restaurantOwner: req.body.restaurantowner
     })
     .then(user => {
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, ({expiresIn: '12h'}))

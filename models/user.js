@@ -11,6 +11,14 @@ const User = database.define('user', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    restaurantOwner: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     firstName: {
         type: DataTypes.STRING,
         allowNull: true
@@ -22,7 +30,8 @@ const User = database.define('user', {
     phoneNumber: {
         type: DataTypes.INTEGER,
         allowNull: true
-    }
+    },
+    
     //use JSON object in postgres
 });
 
