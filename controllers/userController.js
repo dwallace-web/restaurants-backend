@@ -2,11 +2,9 @@ const { Router } = require('express');
 const { User } = require('../models');
 const { UniqueConstraintError } = require('sequelize/lib/errors');
 
-
 const userController = Router();
 
 userController.post('/register', async (req, res) => {
-    
     User.create({
         email: req.body.email,
         password: req.body.password
