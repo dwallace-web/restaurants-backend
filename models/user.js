@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, Sequelize } = require('sequelize');
 const database = require('../db');
 
 const User = database.define('user', {
@@ -18,7 +18,12 @@ const User = database.define('user', {
     lastName: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    phoneNumber: {
+        type: DataTypes.INTEGER,
+        allowNull: true
     }
+    //use JSON object in postgres
 });
 
 module.exports = User;

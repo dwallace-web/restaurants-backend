@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 });
 
 database.authenticate()
+    // .then(() => database.sync({force: true}))
     .then(() => database.sync())
     .then(() => console.log('CONFIRMATION - DATABASE CONNECTED'))
     .then(() => app.listen(process.env.PORT, () => console.log(`App on PORT: ${process.env.PORT}`)))
