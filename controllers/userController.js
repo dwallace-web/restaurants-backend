@@ -4,10 +4,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const userController = Router();
 
-userController.post('/register', (req, res) => {
+userController.post('/signup', (req, res) => {
 
     //req deconstruction 
-    await User.create({
+     User.create({
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 12),
         phoneNumber: req.body.phonenumber,
@@ -28,31 +28,36 @@ userController.post('/register', (req, res) => {
 
 });
 
-userController.post('/login', async (req, res) => {
-    console.log('login func start')
+userController.post('/signin', (req, res) => {
+    // console.log('login func start')
 
     User.findOne({
         where: {
-            email: req.body.username
+            email: req.body.email
         }
     })
         .then(user => {
             if(user) {
                 bcrypt.compare(req.body.password, user.password, (err, matches) => {
                     if(matches) {
-                        //set token 
-                        //login success
+                        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, ({expiresIn: '12h'}))
+
+                        res.status(200).json({
+                            user: user,
+                            message: 'Welcome Back',
+                            sessionToken: token
+                        });
                     }
                     else {
-                        //password doesn't match
+                        res.status(500).json({ error: "Password does not match" })
                     }
                 })
             } else {
-                //no email found
+                res.status(500).json({ error: "This e-mail has not be used. Please Sign Up" })
             }
         })
     
-    console.log('login func end')
+    // console.log('login func end')
 
 })
 
