@@ -12,13 +12,13 @@ const User = database.define('user', {
         allowNull: false
     },
     username: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    restaurantOwner: {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
-    // restaurantOwner: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // },
     firstName: {
         type: DataTypes.STRING,
         allowNull: true
