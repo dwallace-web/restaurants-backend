@@ -44,41 +44,38 @@ restaurantController.post('/', async (req, res) => {
 
 restaurantController.put('/:id', async (req, res) => {
     try {
-        await 
-
-        console.log(req);
-
-        Restaurant.update(
-            {
-                name: req.body.name,
-                address: req.body.address,
-                socialmedia: req.body.socialmedia
-            }
-        )
-        res.status(200).json({
-            message: 'New Restaurant Created!'
-        })
         
+        const query = { where: { id: req.params.id, userId: req.user.id } };
+        const updatedDetails = {
+            name: req.body.name,
+            address: req.body.address,
+            socialmedia: req.body.socialmedia
+        }
+        Restaurant
+        .update(updatedDetails, query)
+        .then(updates =>
+            res.status(200).json({
+                message: 'Edited Restaurant',
+                data: updates
+            })
+            
+        )
     } catch (e) {
         res.status(500).json({ error: e })
     }
 })
 
-restaurantController.delete('/', async (req, res) => {
+restaurantController.delete('/:id', async (req, res) => {
     try {
-        await 
+        const query = { where: { id: req.params.id, userId: req.user.id } };
+
         Restaurant
-        .create(
-            {
-                name: req.body.name,
-                address: req.body.address,
-                socialmedia: req.body.socialmedia
-            }
-        )
-        res.status(200).json({
-            message: 'New Restaurant Created!'
+        .destroy(query)
+        .then(() => res.status(200).json({
+            message: 'Restaurant was deleted',
         })
         
+        )
     } catch (e) {
         res.status(500).json({ error: e })
     }
