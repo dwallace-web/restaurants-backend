@@ -11,7 +11,7 @@ const controllers = require("./controllers");
 app.use(Express.json());
 
 app.use("/user", controllers.User);
-app.use("/restaurant", controllers.Restaurant);
+app.use("/restaurant", middlewares.ValidateSession, controllers.Restaurant);
 
 app.get('/', (req, res) => {
     res.json({

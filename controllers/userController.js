@@ -7,7 +7,8 @@ const userController = Router();
 userController.post('/signup', (req, res) => {
 
     //req deconstruction 
-    User.create({
+    User
+    .create({
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 12),
         username: req.body.username,
