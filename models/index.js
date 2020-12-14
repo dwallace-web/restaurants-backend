@@ -7,7 +7,6 @@ User.hasMany(Restaurant, {as: 'businessowner'});
 // Restaurant.hasMany(Comment, {as: 'restaurantcomment'});
 // User.hasMany(Comment, {as: 'commenter'});
 
-
 module.exports = {
     User,
     Restaurant
