@@ -12,10 +12,14 @@ module.exports = database.define('restaurant', {
         allowNull: false,
         unique: true,
     },
+    phoneNumber: {
+        type: DataTypes.TEXT,
+        unique: false,
+    },
     socialmedia: {
         type: DataTypes.JSONB,
         unique: false,
-    },
+    }   
 })
 
 //https://sequelize.org/master/manual/other-data-types.html#json--sqlite--mysql--mariadb-and-postgresql-only-
