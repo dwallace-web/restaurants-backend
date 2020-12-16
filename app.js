@@ -12,6 +12,7 @@ app.use(Express.json());
 
 app.use("/user", controllers.User);
 app.use("/restaurant", middlewares.ValidateSession, controllers.Restaurant);
+app.use("/comment", middlewares.ValidateSession, controllers.Comment);
 
 app.get('/', (req, res) => {
     res.json({

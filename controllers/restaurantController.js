@@ -22,7 +22,7 @@ restaurantController.get('/', async (req, res) => {
 
 restaurantController.post('/', async (req, res) => {
     try {
-        console.log(req);
+        // console.log(req);
         await 
         Restaurant
         .create(
@@ -30,13 +30,14 @@ restaurantController.post('/', async (req, res) => {
                 userId: req.user.id,
                 name: req.body.name,
                 address: req.body.address,
-                socialmedia: req.body.socialmedia
+                socialmedia: req.body.socialmedia,
+                category: req.body.category
             }
         )
-        res.status(200).json({
-            message: 'New Restaurant Created!'
-        })
-        
+                    res.status(200).json({
+                message: 'New Restaurant Created!'
+            })
+                
     } catch (e) {
         res.status(500).json({ error: e })
     }
@@ -49,7 +50,8 @@ restaurantController.put('/:id', async (req, res) => {
         const updatedDetails = {
             name: req.body.name,
             address: req.body.address,
-            socialmedia: req.body.socialmedia
+            socialmedia: req.body.socialmedia,
+            category: req.body.category
         }
         Restaurant
         .update(updatedDetails, query)

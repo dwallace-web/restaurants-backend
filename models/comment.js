@@ -2,13 +2,12 @@ const { DataTypes } = require('sequelize')
 const database = require('../db')
 
 module.exports = database.define('comment', {
-    
-    name: {
+    title: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
     },
-    title: {
+    body: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,

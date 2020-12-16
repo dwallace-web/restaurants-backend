@@ -19,7 +19,11 @@ module.exports = database.define('restaurant', {
     socialmedia: {
         type: DataTypes.JSONB,
         unique: false,
-    }   
+    },
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
 })
 
 //https://sequelize.org/master/manual/other-data-types.html#json--sqlite--mysql--mariadb-and-postgresql-only-
