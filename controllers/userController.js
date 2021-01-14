@@ -4,6 +4,17 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const userController = Router();
 
+userController.get('/', (req, res) => {
+  //req deconstruction
+  User.findAll()
+    .then((user) => {
+      res.status(200).json({
+        users: user,
+      });
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
 userController.post('/signup', (req, res) => {
   //req deconstruction
   User.create({
@@ -24,6 +35,22 @@ userController.post('/signup', (req, res) => {
         user: user,
         message: 'User registered!',
         sessionToken: token,
+      });
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
+userController.post('/test', (req, res) => {
+  //req deconstruction
+  User.create({
+    email: 'blood',
+    password: 'blood',
+    username: 'blood',
+    restaurantOwner: false,
+  })
+    .then((user) => {
+      res.status(200).json({
+        user: user,
       });
     })
     .catch((err) => res.status(500).json({ error: err }));

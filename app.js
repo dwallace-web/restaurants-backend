@@ -8,8 +8,11 @@ const database = require('./db');
 const middlewares = require('./middlewares');
 const controllers = require('./controllers');
 
-const cors = require('cors');
-app.use(cors());
+// const cors = require('cors');
+// app.use(cors());
+
+// app.use(require('./middlewares/validate-session'));
+app.use(require('./middlewares/cors'));
 
 app.use(Express.json());
 
